@@ -1,16 +1,15 @@
 require 'ruby2d'
 require 'byebug'
 require_relative 'random_player'
-require_relative 'intermediate_player'
+require_relative 'easy_player'
 require_relative 'grid'
 
 set title: 'Connect Four Game Player', background: 'white'
 
 g = Grid.new
 
-tick = 0
-time_increment = 120
-column = 0
+tick = 0 # set timer to 0
+time_increment = 120 # approx 2 seconds per move
 
 p1 = RandomPlayer.new
 p2 = EasyPlayer.new
@@ -22,7 +21,7 @@ p2.opponent = p1.color
 #simulated coin toss for first move
 coin_toss = rand(2)
 
-if coin_toss ==1
+if coin_toss == 1
   player_one = p1
   player_two = p2
 else
@@ -33,8 +32,7 @@ end
 
 update do
   if tick % time_increment == 0
-    column = rand(7)
-    next if !g.available_columns.include?(column)
+
 
     if tick % (time_increment * 2) == 0
       player = player_one
@@ -46,7 +44,12 @@ update do
       set title: "Winner!: #{g.winner}"
     else
       grid_copy = Marshal.load( Marshal.dump(g) ) # deep copy
-      g.drop_and_draw_in_column( player.color, player.play_round(grid_copy) )
+
+      column =  player.play_round(grid_copy)
+      #skip players turn if they give invalid column
+      next if !g.available_columns.include?(column)
+
+      g.drop_and_draw_in_column( player.color, column )
     end
   end
 
