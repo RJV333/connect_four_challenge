@@ -19,6 +19,17 @@ p2.color = 'olive'
 p1.opponent = p2.color
 p2.opponent = p1.color
 
+#simulated coin toss for first move
+coin_toss = rand(2)
+
+if coin_toss ==1
+  player_one = p1
+  player_two = p2
+else
+  player_one = p2
+  player_two = p1
+end
+
 
 update do
   if tick % time_increment == 0
@@ -26,11 +37,11 @@ update do
     next if !g.available_columns.include?(column)
 
     if tick % (time_increment * 2) == 0
-      player = p1
+      player = player_one
     else
-      player = p2
+      player = player_two
     end
-    byebug if player == p2
+
     if g.winning_state?
       set title: "Winner!: #{g.winner}"
     else
