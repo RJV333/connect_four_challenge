@@ -1,9 +1,13 @@
 require 'ruby2d'
 require_relative 'tile'
+require 'set'
 require_relative 'grid_helpers'
+require_relative 'teal_grid_helpers'
+
 
 class Grid < Square
   include GridHelpers
+  include TealGridHelpers
 
   attr_accessor :tiles, :dots, :winner, :win_type, :last_occupied, :occupied_spaces
   attr_reader :grid_size, :x, :y, :tile_size, :margin

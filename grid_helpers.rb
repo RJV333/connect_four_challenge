@@ -51,6 +51,7 @@ module GridHelpers
 
     spot
   end
+
   # is this spot on the board open and unplayed?
   def open_space?(spot)
     !@occupied_spaces.key?(spot)
