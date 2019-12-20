@@ -2,6 +2,7 @@ require 'ruby2d'
 require 'byebug'
 require_relative 'random_player'
 require_relative 'easy_player'
+require_relative 'better_player'
 require_relative 'grid'
 
 set title: 'Connect Four Game Player', background: 'white'
@@ -9,12 +10,12 @@ set title: 'Connect Four Game Player', background: 'white'
 g = Grid.new
 
 tick = 0 # set timer to 0
-time_increment = 120 # approx 2 seconds per move
+move_time_increment = 60 # approx 2 seconds per move
 
-p1 = RandomPlayer.new
-p2 = EasyPlayer.new
-p1.color = 'red'
-p2.color = 'olive'
+p1 = BetterPlayer.new
+p2 = BetterPlayer.new
+p1.color = 'fuchsia'
+p2.color = 'green'
 p1.opponent = p2.color
 p2.opponent = p1.color
 
@@ -31,10 +32,10 @@ end
 
 
 update do
-  if tick % time_increment == 0
+  if tick % move_time_increment == 0
 
 
-    if tick % (time_increment * 2) == 0
+    if tick % (move_time_increment * 2) == 0
       player = player_one
     else
       player = player_two
