@@ -10,12 +10,12 @@ set title: 'Connect Four Game Player', background: 'white'
 g = Grid.new
 
 tick = 0 # set timer to 0
-time_increment = 80 # approx 2 seconds per move
+time_increment = 120 # approx 2 seconds per move
 
-p1 = AquaTaco.new
+p1 = RandomPlayer.new
 p2 = EasyPlayer.new
-p1.color = 'aqua'
-p2.color = 'red'
+p1.color = 'red'
+p2.color = 'olive'
 p1.opponent = p2.color
 p2.opponent = p1.color
 
