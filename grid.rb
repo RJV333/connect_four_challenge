@@ -5,7 +5,7 @@ require_relative 'grid_helpers'
 class Grid < Square
   include GridHelpers
 
-  attr_accessor :tiles, :dots, :winner, :win_type, :last_occupied, :occupied_spaces
+  attr_accessor :tiles, :dots, :winner, :win_type, :last_occupied, :occupied_spaces, :columns_size
   attr_reader :grid_size, :x, :y, :tile_size, :margin
 
   def initialize()
