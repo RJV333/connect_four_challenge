@@ -4,8 +4,8 @@ class EasyPlayer < Player
 
   attr_accessor :color, :opponent
 
-  def initialize
-    @color = 'green'
+  def init
+    @color = 'navy'
   end
 
   # make a random move from the columns available
