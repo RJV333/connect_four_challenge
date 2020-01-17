@@ -22,8 +22,8 @@ module GridHelpers
     spot = x + (y * @columns_size)
   end
   def spot_to_xy(spot)
-    x = spot % columns_size
-    y = spot / columns_size
+    x = spot % @columns_size
+    y = spot / @columns_size
     return [ x, y ]
   end
 

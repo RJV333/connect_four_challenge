@@ -1,5 +1,6 @@
 require 'ruby2d'
 require 'byebug'
+require_relative 'aqua_taco'
 require_relative 'random_player'
 require_relative 'easy_player'
 require_relative 'grid'
