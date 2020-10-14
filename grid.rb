@@ -5,7 +5,7 @@ require_relative 'grid_helpers'
 class Grid < Square
   include GridHelpers
 
-  attr_accessor :tiles, :dots, :winner, :win_type, :last_occupied, :occupied_spaces, :columns_size, :heaps
+  attr_accessor :tiles, :dots, :winner, :win_type, :last_occupied, :occupied_spaces, :columns_size, :heaps, :player_moving
   attr_reader :grid_size, :x, :y, :tile_size, :margin
 
   def initialize()
@@ -32,6 +32,8 @@ class Grid < Square
   end
 
   def remove_chips_from_heap(column, amount)
+    column, amount = mold_column_amount_for_bad_info(column, amount)
+
     removal_position = column + column_height(column) * @columns_size
 
     amount.times do

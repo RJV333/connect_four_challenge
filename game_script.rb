@@ -33,11 +33,14 @@ update do
       player = player_two
     end
 
+    g.render_player_moving(player)
+
     if g.winning_state?
-      set title: "Winner!: #{player.player_name}"
+      g.set_winner(player)
+      g.render_game_winner
     else
-      set title: "Player: #{player.player_name}"
       column, amount = player.play_round(g.heaps)
+
       #skip players turn if they give invalid column
       next if !g.available_columns.include?(column)
 
