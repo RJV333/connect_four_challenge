@@ -11,6 +11,7 @@ module GridHelpers
   end
 
   def render_player_moving(player)
+    @error&.remove
     @player_moving&.remove
     @player_moving = Text.new(
       player.player_name,
@@ -22,12 +23,23 @@ module GridHelpers
   end
 
   def render_game_winner
+    @error&.remove
     @player_moving&.remove
     @player_moving = Text.new(
       "Team #{@winner.player_name} has won the game!",
       x: 150, y: 0,
       size: 20,
       color: 'blue',
+      z: 10
+    )
+  end
+
+  def raise_illegal_move
+    @error = Text.new(
+      'ILLEGAL MOVE',
+      x: 350, y: 0,
+      size: 20,
+      color: 'red',
       z: 10
     )
   end
@@ -43,11 +55,18 @@ module GridHelpers
   end
 
   def mold_column_amount_for_bad_info(column, amount)
-    if @heaps[column] == 0
+    if column < 0
+      raise_illegal_move
+      first_available_move
+    elsif @heaps[column] == 0
+      raise_illegal_move
       first_available_move
     elsif @heaps[column] < amount
+      raise_illegal_move
       [column, @heaps[column]]
     elsif amount <= 0
+      puts 'third condition'
+      raise_illegal_move
       [column, 1]
     else
       [column, amount]

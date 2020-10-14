@@ -4,7 +4,7 @@
 
 # Add headers to game script showing how's moving, and who wins - X
 
-# Add controls to Grid so that illegal moves get assimilated -
+# Add controls to Grid so that illegal moves get assimilated -X
  # too many discs - take max discs
  # asks to remove discs -> take min discs
  # asks for empty row -> take one disc from first avail column

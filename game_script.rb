@@ -1,6 +1,7 @@
 require 'ruby2d'
 require 'byebug'
 require_relative 'random_player'
+require_relative 'illegal_player'
 require_relative 'grid'
 
 set title: 'Matches', background: 'white'
@@ -10,8 +11,8 @@ g = Grid.new
 tick = 0 # set timer to 0
 time_increment = 120 # approx 2 seconds per move
 
-p1 = RandomPlayer.new("First")
-p2 = RandomPlayer.new("Second")
+p1 = RandomPlayer.new("Mario")
+p2 = IllegalPlayer.new("Luigi")
 
 #simulated coin toss for first move
 coin_toss = rand(2)
@@ -40,9 +41,6 @@ update do
       g.render_game_winner
     else
       column, amount = player.play_round(g.heaps)
-
-      #skip players turn if they give invalid column
-      next if !g.available_columns.include?(column)
 
       g.remove_chips_from_heap( column, amount )
     end
