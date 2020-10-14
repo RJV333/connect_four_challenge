@@ -2,7 +2,6 @@ require 'ruby2d'
 require_relative 'tile'
 require_relative 'grid_helpers'
 
-
 class Grid < Square
   include GridHelpers
 

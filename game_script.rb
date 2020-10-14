@@ -13,9 +13,6 @@ time_increment = 120 # approx 2 seconds per move
 p1 = RandomPlayer.new("First")
 p2 = RandomPlayer.new("Second")
 
-p1.opponent = p2.color
-p2.opponent = p1.color
-
 #simulated coin toss for first move
 coin_toss = rand(2)
 
@@ -30,7 +27,6 @@ end
 update do
   if tick % time_increment == 0
 
-
     if tick % (time_increment * 2) == 0
       player = player_one
     else
@@ -41,7 +37,7 @@ update do
       set title: "Winner!: #{player.player_name}"
     else
       set title: "Player: #{player.player_name}"
-      column, amount = player.play_round(g)
+      column, amount = player.play_round(g.heaps)
       #skip players turn if they give invalid column
       next if !g.available_columns.include?(column)
 

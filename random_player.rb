@@ -11,13 +11,20 @@ class RandomPlayer < Player
   end
 
   # make a random move from the columns available
-  def play_round(grid)
-    column = grid.available_columns[ rand(grid.available_columns.length) ]
+  def play_round(heaps)
+    column = available_columns(heaps)[ rand(available_columns(heaps).length) ]
 
-    amount = rand( 1..grid.heaps[column] )
+    amount = rand( 1..heaps[column] )
 
     return [column, amount]
   end
 
-  
+  # returns and array of ints representing avail columns
+  def available_columns(heaps)
+    x = 0
+
+    results = heaps.each_index.select{|i| heaps[i] > 0}
+
+    results
+  end
 end
