@@ -1,0 +1,12 @@
+# THINGS TO IMPLEMENTED:
+
+# Adjust player class to just take array of ints
+
+# Add headers to game script showing how's moving, and who wins
+
+# Add controls to Grid so that illegal moves get assimilated
+ # too many discs - take max discs
+ # asks to remove discs -> take min discs
+ # asks for empty row -> take one disc from first avail column
+
+# Update script so that person to remove last disc is the loser

@@ -18,4 +18,6 @@ class RandomPlayer < Player
 
     return [column, amount]
   end
+
+  
 end
