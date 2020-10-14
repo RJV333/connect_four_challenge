@@ -2,9 +2,10 @@ class Player
 
   attr_accessor :color, :opponent
 
-  def init
+  def initialize(player_name)
     @color = nil
     @opponent =  nil
+    @player_name = player_name
   end
 
   # make a random move from the columns available

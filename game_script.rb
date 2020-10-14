@@ -1,21 +1,18 @@
 require 'ruby2d'
 require 'byebug'
-require_relative 'aqua_taco'
 require_relative 'random_player'
-require_relative 'easy_player'
-require_relative 'teal_player'
 require_relative 'grid'
 
-set title: 'Connect Four Game Player', background: 'white'
+set title: 'Matches', background: 'white'
 
 g = Grid.new
 
 tick = 0 # set timer to 0
 time_increment = 120 # approx 2 seconds per move
 
-p1 = TealPlayer.new
-p2 = EasyPlayer.new
-p2.color = 'blue'
+p1 = RandomPlayer.new("First")
+p2 = RandomPlayer.new("Second")
+
 p1.opponent = p2.color
 p2.opponent = p1.color
 
@@ -30,7 +27,6 @@ else
   player_two = p1
 end
 
-
 update do
   if tick % time_increment == 0
 
@@ -42,15 +38,14 @@ update do
     end
 
     if g.winning_state?
-      set title: "Winner!: #{g.winner}"
+      set title: "Winner!: #{player.player_name}"
     else
-      grid_copy = Marshal.load( Marshal.dump(g) ) # deep copy
-
-      column =  player.play_round(grid_copy)
+      set title: "Player: #{player.player_name}"
+      column, amount = player.play_round(g)
       #skip players turn if they give invalid column
       next if !g.available_columns.include?(column)
 
-      g.drop_and_draw_in_column( player.color, column )
+      g.remove_chips_from_heap( column, amount )
     end
   end
 
